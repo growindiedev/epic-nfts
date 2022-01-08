@@ -24,19 +24,19 @@ contract MyEpicNFT is ERC721URIStorage {
   }
 
   function pickRandomFirstWord(uint256 tokenId) public view returns (string memory) {
-    uint256 rand = random(string(abi.encodePacked("grit", Strings.toString(tokenId))));
+    uint256 rand = random(string(abi.encodePacked(Strings.toString((block.timestamp)), Strings.toString(tokenId))));
     rand = rand % firstWords.length;
     return firstWords[rand];
   }
 
     function pickRandomSecondWord(uint256 tokenId) public view returns (string memory) {
-    uint256 rand = random(string(abi.encodePacked("perseverance", Strings.toString(tokenId))));
+    uint256 rand = random(string(abi.encodePacked(Strings.toString((block.timestamp)), Strings.toString(tokenId))));
     rand = rand % secondWords.length;
     return secondWords[rand];
   }
 
   function pickRandomThirdWord(uint256 tokenId) public view returns (string memory) {
-    uint256 rand = random(string(abi.encodePacked("determination", Strings.toString(tokenId))));
+    uint256 rand = random(string(abi.encodePacked(Strings.toString((block.timestamp)), Strings.toString(tokenId))));
     rand = rand % thirdWords.length;
     return thirdWords[rand];
   }
@@ -80,7 +80,7 @@ contract MyEpicNFT is ERC721URIStorage {
     _safeMint(msg.sender, newItemId);
     _setTokenURI(newItemId, finalTokenUri);
     _tokenIds.increment();
-    
+
     console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
 
   }
